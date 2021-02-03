@@ -19,9 +19,9 @@ If incident radiation is unpolarized, the differential electron scattering cross
     \frac{d\sigma}{d\Omega} = \frac{3 \sigma_T}{16\pi}(1 + \cos^2 \Theta)
 \end{equation}
 %
-Let the incident photon enter along $\theta=0$ such that the scattering angle $\Theta$ is equal to the colatitude $\theta$.  Integrating over solid angle, we obtain
+Let the incident photon enter aligned with $\theta=0$ such that the scattering angle $\Theta$ is equal to the colatitude $\theta$.  Integrating over solid angle, we obtain
 %
-\begin{equation}
+\begin{equation*} \label{exsec}
     \begin{split}
         d\sigma &= \frac{3 \sigma_T}{16\pi}(1 + \cos^2 \theta) d\Omega\\
         %
@@ -37,7 +37,7 @@ Let the incident photon enter along $\theta=0$ such that the scattering angle $\
         %
         \sigma &= \sigma_T \qed
     \end{split}
-\end{equation}
+\end{equation*}
 %
 The momentum imparted to the electron is determined by the vector difference of the incoming and outgoing photon, which can separated into a component along the incoming photon direction and a component perpendicular to that direction (assuming the scattering is azimuthally symmetric about $\phi$).
 %
@@ -48,12 +48,50 @@ The momentum imparted to the electron is determined by the vector difference of 
 As we have established, the incoming photon direction $\mathbf{\hat n}$ is equal to $\mathbf{n_\parallel}$ while the outgoing photon direction is 
 %
 \begin{equation}
-    \mathbf{\hat n'} = \sin \Theta \ \mathbf{n_\parallel} + \cos \Theta\  \mathbf{n_\perp}
+    \mathbf{\hat n'} = \cos \Theta \ \mathbf{n_\parallel} + \sin \Theta\  \mathbf{n_\perp}
 \end{equation}
 %
 Since we assume the energy of the photon is unchanged during the scattering, $\nu' = \nu$. Then the vector difference yields
 %
 \begin{equation}
-    \Delta \mathbf{p} = \frac{h\nu}{c}\left(\sin \Theta - 1\right) \mathbf{n_\parallel} + \frac{h\nu}{c}\cos \Theta \ \mathbf{n_\perp}
+    \Delta \mathbf{p} = \frac{h\nu}{c}\left(\cos \Theta - 1\right) \mathbf{n_\parallel} + \frac{h\nu}{c}\sin \Theta \ \mathbf{n_\perp}
 \end{equation}
+%
+The magnitude of the change in momentum yields the total momentum imparted to the electron when the photon scatters through the angle $\Theta$. 
+%
+\begin{equation*}
+\begin{split}
+    |\Delta \mathbf{p}| &= \sqrt{\left[\frac{h\nu}{c}\left(\cos \Theta - 1\right)\right]^2 + \left(\frac{h\nu}{c}\sin \Theta\right)^2}\\
+    %
+    \Delta p &= \frac{h\nu}{c}\sqrt{\cos ^2 \Theta - 2 \cos \Theta + 1 + \sin ^2\Theta}\\
+    \end{split}
+\end{equation*}
+%
+\begin{equation} \label{momentum_per_photon}
+    \boxed{\Delta p = \frac{h\nu}{c}\sqrt{2\left(1 - \cos \Theta \right)}}
+\end{equation}
+%
+As expected, this has the right limits: when the scattering angle is $\pi$, the photon bounces right back in the direction it came and the imparted momentum is $2h\nu/c$. If the scattering angle is $0$, the photon continues along its trajectory unchanged and no momentum is imparted. 
+
+The radiation force can be obtained by multiplying together the number of photons per unit area per unit time, the momentum per photon, and the cross section of the electron to obtain the momentum change per unit time. The first of these quantities is
+%
+\begin{equation}
+    \frac{\left(\mathrm{number\ of\ photons}\right)}{\left(\mathrm{area}\right)\times\left(\mathrm{time}\right)} = \frac{\left(\mathrm{flux}\right)}{\left(\mathrm{photon\ energy}\right)} =  \frac{\vec{F}}{h\nu\sqrt{2\left(1-\cos \theta \right)}}
+\end{equation}
+%
+where 
+%
+\begin{equation}
+    \vec{F} = \frac{dL}{d\nu}\frac{1}{4\pi r^2}\hat{r}
+\end{equation}
+%
+The momentum imparted per photon is given by Eq. \ref{momentum_per_photon}, and the electron cross section is given by Eq. \ref{exsec}. Carrying out the multiplication, we obtain
+
+\begin{equation}
+    \frac{dL}{d\nu}\frac{\sigma_T}{c}\frac{1}{4\pi r^2}
+\end{equation}
+
+
+
+
 \end{document}
