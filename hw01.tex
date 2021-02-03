@@ -73,24 +73,25 @@ The magnitude of the change in momentum yields the total momentum imparted to th
 %
 As expected, this has the right limits: when the scattering angle is $\pi$, the photon bounces right back in the direction it came and the imparted momentum is $2h\nu/c$. If the scattering angle is $0$, the photon continues along its trajectory unchanged and no momentum is imparted. 
 
-The radiation force can be obtained by multiplying together the number of photons per unit area per unit time, the momentum per photon, and the cross section of the electron to obtain the momentum change per unit time. The first of these quantities is
+We now wish to find the radiation force per electron in the radial direction. The spectral energy $dL/d\nu$ can be converted to units of photons per unit time per unit area per frequency by dividing through by the energy per photon, which is $h\nu$, and the surface area of the sphere. Then, multiplying by the momentum imparted to the electron by the scattering, we obtain a momentum per unit time per unit area per frequency. Finally, the differential cross section introduces units of area and solid angle which integrate out to a force.
 %
 \begin{equation}
-    \frac{\left(\mathrm{number\ of\ photons}\right)}{\left(\mathrm{area}\right)\times\left(\mathrm{time}\right)} = \frac{\left(\mathrm{flux}\right)}{\left(\mathrm{photon\ energy}\right)} =  \frac{\vec{F}}{h\nu\sqrt{2\left(1-\cos \theta \right)}}
+    \begin{split}
+    \frac{df_{\mathrm{rad}}}{d\nu d\Omega} = \frac{\left(\frac{dL}{d\nu}\right)}{4\pi r^2 h\nu}\times \frac{h\nu}{c}\sqrt{2\left(1 - \cos \theta \right)} \times \frac{d\sigma}{d\Omega} \\
+    %
+    \end{split}
 \end{equation}
 %
-where 
-%
-\begin{equation}
-    \vec{F} = \frac{dL}{d\nu}\frac{1}{4\pi r^2}\hat{r}
-\end{equation}
-%
-The momentum imparted per photon is given by Eq. \ref{momentum_per_photon}, and the electron cross section is given by Eq. \ref{exsec}. Carrying out the multiplication, we obtain
+Integrating over frequency and solid angle $d\Omega = \sin \theta \ d\theta\ d\phi$, we obtain
 
 \begin{equation}
-    \frac{dL}{d\nu}\frac{\sigma_T}{c}\frac{1}{4\pi r^2}
+    \begin{split}
+    f_{\mathrm{rad}} &= \int
+\int\frac{1}{4\pi r^2}\frac{dL}{d\nu}\times \frac{1}{c}\sqrt{2\left(1 - \cos \theta \right)} \times \frac{3 \sigma_T}{16\pi}(1 + \cos^2 \Theta) d\Omega d\nu\\
+%
+&= \frac{3 \sigma_T L}{32\pi r^2 c} \int_0^\pi \sqrt{2\left(1 - \cos \theta \right)} \times (1 + \cos^2 \theta) \sin \theta d\theta\\
+    \end{split}
 \end{equation}
-
 
 
 
