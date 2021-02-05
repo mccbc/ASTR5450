@@ -1,6 +1,8 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{esint}
 \usepackage{amsthm, amssymb}
 \setlength{\jot}{10pt} % affecting the line spacing in the environment
 \title{ASTR5420 Problem Set 1}
@@ -39,60 +41,96 @@ Let the incident photon enter aligned with $\theta=0$ such that the scattering a
     \end{split}
 \end{equation*}
 %
-The momentum imparted to the electron is determined by the vector difference of the incoming and outgoing photon, which can separated into a component along the incoming photon direction and a component perpendicular to that direction (assuming the scattering is azimuthally symmetric about $\phi$).
+The momentum imparted to the electron is determined by the vector difference of the incoming and outgoing photon, which can separated into components assuming the incoming photon lies along the $\hat{z}$ axis.
 %
 \begin{equation}
     \Delta \mathbf{p} = \frac{h\nu'}{c} \mathbf{\hat n'} - \frac{h\nu}{c}\mathbf{\hat n}
 \end{equation}
 %
-As we have established, the incoming photon direction $\mathbf{\hat n}$ is equal to $\mathbf{n_\parallel}$ while the outgoing photon direction is 
+As we have established, the incoming photon direction $\mathbf{\hat n}$ is equal to $\hat{z}$ while the outgoing photon direction is 
 %
 \begin{equation}
-    \mathbf{\hat n'} = \cos \Theta \ \mathbf{n_\parallel} + \sin \Theta\  \mathbf{n_\perp}
+    \mathbf{\hat n'} = \sin \theta \cos{\phi}\ \hat{x} + \sin \theta \sin \phi\ \hat{y}  + \cos \theta \ \hat{z}
 \end{equation}
 %
 Since we assume the energy of the photon is unchanged during the scattering, $\nu' = \nu$. Then the vector difference yields
-%
+
 \begin{equation}
-    \Delta \mathbf{p} = \frac{h\nu}{c}\left(\cos \Theta - 1\right) \mathbf{n_\parallel} + \frac{h\nu}{c}\sin \Theta \ \mathbf{n_\perp}
+    \Delta \mathbf{p} = \frac{h\nu}{c}\sin \theta \cos \phi\ \hat{x} + \frac{h\nu}{c}\sin \theta \sin \phi\ \hat{y} + \frac{h\nu}{c}\left(\cos \theta - 1\right)\ \hat{z}
 \end{equation}
 %
-The magnitude of the change in momentum yields the total momentum imparted to the electron when the photon scatters through the angle $\Theta$. 
-%
-\begin{equation*}
-\begin{split}
-    |\Delta \mathbf{p}| &= \sqrt{\left[\frac{h\nu}{c}\left(\cos \Theta - 1\right)\right]^2 + \left(\frac{h\nu}{c}\sin \Theta\right)^2}\\
-    %
-    \Delta p &= \frac{h\nu}{c}\sqrt{\cos ^2 \Theta - 2 \cos \Theta + 1 + \sin ^2\Theta}\\
-    \end{split}
-\end{equation*}
-%
-\begin{equation} \label{momentum_per_photon}
-    \boxed{\Delta p = \frac{h\nu}{c}\sqrt{2\left(1 - \cos \Theta \right)}}
+Converting to spherical coordinates to get the radial component of this vector, we obtain
+\begin{equation}
+    \boxed{\Delta \mathbf{p} = \frac{h\nu}{c}\left(1-\cos\theta\right)\ \hat{r}}
 \end{equation}
-%
 As expected, this has the right limits: when the scattering angle is $\pi$, the photon bounces right back in the direction it came and the imparted momentum is $2h\nu/c$. If the scattering angle is $0$, the photon continues along its trajectory unchanged and no momentum is imparted. 
 
 We now wish to find the radiation force per electron in the radial direction. The spectral energy $dL/d\nu$ can be converted to units of photons per unit time per unit area per frequency by dividing through by the energy per photon, which is $h\nu$, and the surface area of the sphere. Then, multiplying by the momentum imparted to the electron by the scattering, we obtain a momentum per unit time per unit area per frequency. Finally, the differential cross section introduces units of area and solid angle which integrate out to a force.
 %
 \begin{equation}
     \begin{split}
-    \frac{df_{\mathrm{rad}}}{d\nu d\Omega} = \frac{\left(\frac{dL}{d\nu}\right)}{4\pi r^2 h\nu}\times \frac{h\nu}{c}\sqrt{2\left(1 - \cos \theta \right)} \times \frac{d\sigma}{d\Omega} \\
+    \frac{df_{\mathrm{rad}}}{d\nu d\Omega} = \frac{\left(\frac{dL}{d\nu}\right)}{4\pi r^2 h\nu}\times \frac{h\nu}{c}\left(1 - \cos \theta \right) \times \frac{d\sigma}{d\Omega} \\
     %
     \end{split}
 \end{equation}
 %
 Integrating over frequency and solid angle $d\Omega = \sin \theta \ d\theta\ d\phi$, we obtain
 
-\begin{equation}
+\begin{equation*}
     \begin{split}
     f_{\mathrm{rad}} &= \int
-\int\frac{1}{4\pi r^2}\frac{dL}{d\nu}\times \frac{1}{c}\sqrt{2\left(1 - \cos \theta \right)} \times \frac{3 \sigma_T}{16\pi}(1 + \cos^2 \Theta) d\Omega d\nu\\
+\int\frac{1}{4\pi r^2}\frac{dL}{d\nu}\times \frac{1}{c}\left(1 - \cos \theta \right) \times \frac{3 \sigma_T}{16\pi}(1 + \cos^2 \theta) d\Omega d\nu\\
 %
-&= \frac{3 \sigma_T L}{32\pi r^2 c} \int_0^\pi \sqrt{2\left(1 - \cos \theta \right)} \times (1 + \cos^2 \theta) \sin \theta d\theta\\
+&= \frac{3 \sigma_T L}{32\pi r^2 c} \int_0^\pi \left(1 - \cos \theta \right)(1 + \cos^2 \theta) \sin \theta d\theta\\
+&= \frac{3 \sigma_T L}{32\pi r^2 c} \left(\frac{8}{3}\right)\\
+&= \frac{\sigma_T L}{4\pi r^2 c} \qed
     \end{split}
-\end{equation}
+\end{equation*}
 
+\section{}
+
+\begin{enumerate}[label=\alph*.]
+\item
+\begin{equation*}
+    \begin{split}
+        \vec{f}_{\mathrm{rad}} &= -\vec{f}_{\mathrm{grav}}\\
+        %
+        \frac{\sigma_T \vec{F}}{c} &= m_p \nabla \phi\\
+        %
+        \frac{\sigma_T}{c}\vec{F}\cdot \hat{n} &= m_p \nabla \phi \cdot \hat{n}\\
+        %
+        \frac{\sigma_T}{c} \oiint_S \vec{F}\cdot \hat{n} \ dS &= m_p \oiint_S \nabla \phi \cdot \hat{n} \ dS\\
+        %
+    \end{split}
+\end{equation*}
+\begin{equation}
+    \boxed{\frac{\sigma_T L}{c} = m_p \oiint_S \nabla \phi \cdot \hat{n} \ dS\\}
+\end{equation}
+%
+\item
+\begin{equation*}
+    \begin{split}
+        \frac{\sigma_T L}{c} = m_p \oiint_S \nabla \phi \cdot \hat{n} \ dS\\
+        \frac{\sigma_T L}{c} = m_p \iiint_V \nabla \cdot \nabla \phi \ dV\\
+    \end{split}
+\end{equation*}
+We now recognize the Poisson equation for Newtonian gravity is $\nabla \cdot \nabla \phi = \nabla^2\phi = 4\pi G\rho$ and make the necessary substitution.
+\begin{equation*}
+    \begin{split}
+        \frac{\sigma_T L}{c} &= 4\pi G m_p \iiint_V \rho \ dV\\
+    \end{split}
+\end{equation*}
+\begin{equation}
+    \boxed{\frac{\sigma_T L}{c} = 4\pi G m_p M_{\mathrm{enc}}}
+\end{equation}
+%
+\item
+Solving for L, we obtain
+\begin{equation}
+    \boxed{L = \frac{4\pi G M_{\mathrm{enc}} m_p c}{\sigma_T}}
+\end{equation}
+This differs from the spherical result only by the fact that $M$ is the mass enclosed by the volume $V$, which is not necessarily spherically symmetric.
+\end{enumerate}
 
 
 \end{document}
