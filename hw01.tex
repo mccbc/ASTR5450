@@ -4,6 +4,7 @@
 \usepackage{enumitem}
 \usepackage{esint}
 \usepackage{amsthm, amssymb}
+\usepackage{graphicx}
 \setlength{\jot}{10pt} % affecting the line spacing in the environment
 \title{ASTR5420 Problem Set 1}
 \author{B. Connor McClellan}
@@ -132,5 +133,59 @@ Solving for L, we obtain
 This differs from the spherical result only by the fact that $M$ is the mass enclosed by the volume $V$, which is not necessarily spherically symmetric.
 \end{enumerate}
 
+\section{}
+
+\begin{figure}
+    \centering
+    \includegraphics[width=
+\textwidth]{Superluminal_motion_in_AGN_jets.png}
+    \caption{Superluminal motion diagram}
+    \label{fig:my_label}
+\end{figure}
+
+\begin{enumerate}[label=\alph*.]
+    \item Using the diagram in Fig. \ref{fig:my_label}, we begin by examining the two events A and B in the frame of the observer, O. The time interval $\delta t$ is equal to $t_2 - t_1$, while the events seen by the observer are
+    
+    \begin{equation}
+        t_2' = t_2 + \frac{D}{c}
+    \end{equation}
+    \begin{equation}
+        t_1' = t_1 + \frac{D + v\delta t \cos \theta}{c}
+    \end{equation}
+    And thus, the time interval seen by the observer is
+    \begin{equation}
+        \begin{split}
+            \delta t' = t_2' - t_1' &= t_2 + \frac{D}{c} - t_1 - \frac{D + v\delta t \cos \theta}{c}\\
+            &=  \delta t - \frac{v\delta t \cos \theta}{c}\\
+        \end{split}
+    \end{equation}
+    The apparent velocity is defined as 
+    \begin{equation}
+        v_{\textrm{app}} = \frac{D\phi}{\delta t'}
+    \end{equation}
+    Since the angle $\phi$ is small, we utilize the approximation $\phi \approx \sin \phi$ to obtain
+    \begin{equation}
+        v_{\textrm{app}} = \frac{D\sin \phi}{\delta t'} = \frac{v \delta t \sin \theta}{\delta t - \frac{v}{c}\delta t \cos \theta} = \frac{v\sin \theta}{1 - \frac{v}{c} \cos \theta} \qed
+    \end{equation}
+    \item To find the maximum,  we take the derivative of $v_{\textrm{app}}$ with respect to $\theta$ and set it to zero. Then, we solve for the angle. 
+    \begin{equation}
+        \begin{split}
+            \frac{dv_{\textrm{app}}}{d\theta} &= \frac{d}{d\theta} \frac{v\sin \theta}{1 - \frac{v}{c} \cos \theta} = 0\\
+            0 &= \frac{v\cos\theta}{1 - \frac{v}{c}\cos \theta} - \frac{v\sin\theta}{\left(1 - \frac{v}{c}\cos\theta\right)^2}\left(\frac{v}{c}\sin\theta\right)\\
+            & = \cos\theta -\frac{v}{c}\cos^2\theta  - \frac{v}{c}\sin^2\theta
+        \end{split}
+    \end{equation}
+    \begin{equation}
+        \boxed{\theta_\textrm{max} = \cos^{-1} \left(\frac{v}{c}\right)}
+    \end{equation}
+    We now plug this in to the expression for $v_\textrm{app}$ to find the maximum apparent velocity in terms of $v$ and $\gamma$.
+    \begin{equation}
+        \begin{split}
+            v_{\textrm{max}} &= \frac{v\sin \left[\cos^{-1} \left(\frac{v}{c}\right)\right]}{1 - \frac{v}{c} \cos \left[\cos^{-1} \left(\frac{v}{c}\right)\right]}\\
+            &= \frac{v\sqrt{1 - \frac{v^2}{c^2}}}{1 - \frac{v^2}{c^2}} \\
+            & = v \gamma
+        \end{split}
+    \end{equation}
+\end{enumerate}
 
 \end{document}
